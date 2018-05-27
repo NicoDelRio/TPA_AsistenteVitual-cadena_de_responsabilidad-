@@ -3,7 +3,7 @@ package util;
 
 import java.util.StringTokenizer;
 
-// Clase que calcula el resultado de una expresión recibida por string a través de un árbol
+// Clase que calcula el resultado de una expresiÃ³n recibida por string a travÃ©s de un Ã¡rbol
 public class MyCalculo {
 
 	private Pila pOperandos;              	// Pila de operandos
@@ -28,23 +28,23 @@ public class MyCalculo {
 	}
 
 	private String normalizar(String expresion) { 
-		// Diferenciar el operador resta (binario) con los números negativos (unario)
+		// Diferenciar el operador resta (binario) con los nÃºmeros negativos (unario)
 		if(expresion.startsWith("-")) // Si el primer caracter es - reemplazar por N
 			expresion = "N" + expresion.substring(1);
 		for(String[] reemplazo : reemplazarPorNegativo) { // Hacer los reemplazos correspondientes al operador unario
 			expresion = expresion.replace(reemplazo[0], reemplazo[1]);
 		}
-		expresion = expresion.replace("de", "*"); // Multiplicación implícita en porcentaje
+		expresion = expresion.replace("de", "*"); // MultiplicaciÃ³n implÃ­cita en porcentaje
 		if(expresion.startsWith("√")) // Si el primer caracter es √ reemplazar por 2√
 			expresion = "2√" + expresion.substring(1);
-		for(String[] reemplazo : reemplazarPorRaizCuadrada) { // Hacer los reemplazos correspondientes a la raíz cuadrada
+		for(String[] reemplazo : reemplazarPorRaizCuadrada) { // Hacer los reemplazos correspondientes a la raÃ­z cuadrada
 			expresion = expresion.replace(reemplazo[0], reemplazo[1]);
 		}
 		
 		return expresion;
 	}
 
-	// Construir un árbol a partir de una expresión aritmética
+	// Construir un Ã¡rbol a partir de una expresiÃ³n aritmÃ©tica
 	private NodoArbol construirArbol(String expresion) {
 		StringTokenizer tokenizer;
 		String token;
@@ -61,7 +61,7 @@ public class MyCalculo {
 				;
 
 			else if (operadores.indexOf(token) < 0) {
-				// Si es un operando: guardar como nodo del árbol
+				// Si es un operando: guardar como nodo del Ã¡rbol
 				pOperandos.poner(new NodoArbol(token));
 
 			} else if(token.equals(")")) {
@@ -69,11 +69,11 @@ public class MyCalculo {
 				while (!pOperadores.estaVacia() && !pOperadores.verTope().equals("(")) {
 					guardarSubArbol();
 				}
-				pOperadores.sacar();  // Sacar el paréntesis izquierdo
+				pOperadores.sacar();  // Sacar el parÃ©ntesis izquierdo
 
 			} else {
 				if (!token.equals("(") && !pOperadores.estaVacia()) {
-					// Operador diferente de cualquier paréntesis
+					// Operador diferente de cualquier parÃ©ntesis
 					String op = (String) pOperadores.verTope();
 					while (!op.equals("(") && !pOperadores.estaVacia()
 							&& operadores.indexOf(op) >= operadores.indexOf(token)) {
@@ -103,14 +103,14 @@ public class MyCalculo {
 		return raiz;
 	}
 
-	// Almacenar un subárbol en la pila
+	// Almacenar un subÃ¡rbol en la pila
 	private void guardarSubArbol() {
 		NodoArbol op = (NodoArbol) pOperandos.sacar();
 
-		if(pOperadores.verTope().equals("%") || pOperadores.verTope().equals("N")) { // Si es una operación unaria
+		if(pOperadores.verTope().equals("%") || pOperadores.verTope().equals("N")) { // Si es una operaciÃ³n unaria
 			pOperandos.poner(new NodoArbol(op, pOperadores.sacar(), null));
 		} else { // Sino
-			NodoArbol opIzq = (NodoArbol) pOperandos.sacar(); // Sacar operador izquierdo para realizar operación binaria
+			NodoArbol opIzq = (NodoArbol) pOperandos.sacar(); // Sacar operador izquierdo para realizar operaciÃ³n binaria
 			pOperandos.poner(new NodoArbol(opIzq, pOperadores.sacar(), op));
 		}
 	}
@@ -124,12 +124,12 @@ public class MyCalculo {
 	private double operar(NodoArbol n) {
 
 		if(esOperador(n.obtenerValor())) {
-			// Si es operador: hacer operación
+			// Si es operador: hacer operaciÃ³n
 			return operacion(n);
 		}
 
 		else {
-			// Si es número: devolverlo
+			// Si es nÃºmero: devolverlo
 			return Double.parseDouble((String) n.obtenerValor());
 		}
 	}
