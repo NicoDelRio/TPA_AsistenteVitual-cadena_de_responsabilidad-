@@ -28,7 +28,7 @@ public class RF10Tests {
 				"@delucas ¿es el 50?",
 				jenkins.escuchar("@jenkins listo")
 			);
-		
+
 		Assert.assertEquals(
 				"@delucas ¿es el 75?",
 				jenkins.escuchar("@jenkins más grande")
@@ -50,6 +50,8 @@ public class RF10Tests {
 			);
 	}
 	
+	
+//	Para este test (número: 12), comentar Juego.java linea 122 y descomentar 123.
 	@Test
 	public void pensandoNumero() {
 		Assert.assertEquals(
