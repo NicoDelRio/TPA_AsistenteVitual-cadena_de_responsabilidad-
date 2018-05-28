@@ -69,6 +69,7 @@ public class Juego implements Operacion {
 			while(matcher.find()) {
 				if(matcher.matches()) {
 					numeroCalculado = (int) Math.floor((min + max)/2);
+					System.out.println("Se ejecuto estoyAdivinando: " + numeroCalculado);
 					pedido.setJuego(contador, numeroPensado, min, max, numeroCalculado, estoyPensando, estoyAdivinando);
 					return pedido.getNameUsuario() + " ¿es el " + numeroCalculado + "?";
 				}
@@ -79,13 +80,18 @@ public class Juego implements Operacion {
 			matcher = pattern.matcher(pedido.getMensaje());
 			while(matcher.find()) {
 				if(matcher.matches()) {
+					System.out.println("Se ejecuto estoyAdivinando: " + numeroCalculado);
 					if(matcher.group(1).equals("chico")) {
+						System.out.println("Se ejecuto estoyAdivinando: mas chico");
 						max = numeroCalculado;
 					}
 					else if(matcher.group(1).equals("grande")) {
+						System.out.println("Se ejecuto estoyAdivinando: mas grande");
 						min = numeroCalculado;
 					}
+					
 					numeroCalculado = (int) Math.floor((min + max) / 2);
+					System.out.println("Se ejecuto estoyAdivinando: " + numeroCalculado);
 					pedido.setJuego(contador, numeroPensado, min, max, numeroCalculado, estoyPensando, estoyAdivinando);
 					return pedido.getNameUsuario() + " ¿es el " + numeroCalculado + "?";
 				}
@@ -112,8 +118,9 @@ public class Juego implements Operacion {
 			if(matcher.matches()) {
 				this.contador = 0;
 				this.estoyPensando = true;
-//				this.numeroPensado = (int) (Math.random() * 100) + 1; // Pensar número aleatorio entre 1 y 100
-				this.numeroPensado = 12;
+				// System.out.println(estoyPensando); Se pone en true
+				this.numeroPensado = (int) (Math.random() * 100) + 1; // Pensar número aleatorio entre 1 y 100
+//				this.numeroPensado = 12;
 				pedido.setJuego(contador, numeroPensado, min, max, numeroCalculado, estoyPensando, estoyAdivinando);
 				return pedido.getNameUsuario() + " ¡listo!";
 			}

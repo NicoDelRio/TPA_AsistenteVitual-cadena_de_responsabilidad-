@@ -13,11 +13,17 @@ public class Pedido {
 	private int numeroCalculado;
 	private boolean estoyPensando;
 	private boolean estoyAdivinando;
-	private int contadorChuck;
+	
+	public Pedido(String mensaje_original, String nameUsuario, String nameAsistente) {
+		this.mensaje = normalizado(mensaje_original);
+		this.nameUsuario = nameUsuario;
+		this.nameAsistente = nameAsistente;
+	}
+		
 	
 	
 	public Pedido(String mensaje_original, String nameUsuario, String nameAsistente, int contador, int numeroPensado,
-					int min, int max, int numeroCalculado, boolean estoyPensando, boolean estoyAdivinando, int contadorChuck) {
+					int min, int max, int numeroCalculado, boolean estoyPensando, boolean estoyAdivinando) {
 		super();
 		this.mensaje = normalizado(mensaje_original);
 		this.nameUsuario = nameUsuario;
@@ -29,7 +35,6 @@ public class Pedido {
 		this.numeroCalculado = numeroCalculado;
 		this.estoyPensando = estoyPensando;
 		this.estoyAdivinando = estoyAdivinando;
-		this.contadorChuck = contadorChuck;
 	}
 
 	public void setJuego(int contador, int numeroPensado, int min, int max, int numeroCalculado, 
@@ -41,10 +46,6 @@ public class Pedido {
 		this.numeroCalculado = numeroCalculado;
 		this.estoyAdivinando = estoyAdivinando;
 		this.estoyPensando = estoyPensando;
-	}
-	
-	public void setContadorChuck(int contadorChuck) {
-		this.contadorChuck = contadorChuck;
 	}
 	
 	public String getMensaje() {
@@ -87,9 +88,6 @@ public class Pedido {
 		return estoyAdivinando;
 	}
 
-	public int getContadorChuck() {
-		return contadorChuck;
-	}
 
 	public String normalizado(String texto_original) {	
 //		limpiar de tildes

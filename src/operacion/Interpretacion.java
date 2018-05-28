@@ -27,14 +27,14 @@ public class Interpretacion implements Operacion{
 		Operacion ChuckNorrisFacts = new ChuckNorrisFacts();
 		Operacion Default = new Default();
 		
-
-		NoDirigidoAsistente.siguiente(Juego);
-		Juego.siguiente(Saludar);
+		
+		NoDirigidoAsistente.siguiente(Saludar);
 		Saludar.siguiente(Agradecer);
 		Agradecer.siguiente(FechaActual);
 		FechaActual.siguiente(FechaNoActual);		
 		FechaNoActual.siguiente(Calculo);
-		Calculo.siguiente(Convertir);
+		Calculo.siguiente(Juego);
+		Juego.siguiente(Convertir);
 		Convertir.siguiente(LeyesRobotica);
 		LeyesRobotica.siguiente(ChuckNorrisFacts);
 		ChuckNorrisFacts.siguiente(Default);
